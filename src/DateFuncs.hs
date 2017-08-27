@@ -17,8 +17,5 @@ monthStr 11 = "Nov"
 monthStr 12 = "Dec"
 
 getPrevMonth :: (Integer,Int,Int) -> (Integer,Int)
-getPrevMonth (year,month,day) = if month == 1
-    then
-        (year -1, 12)
-    else
-        (year,month-1)
+getPrevMonth (year,1,day) = (year -1, 12)
+getPrevMonth (year,month,day) = (year,month-1)
