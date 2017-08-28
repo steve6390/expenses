@@ -12,9 +12,6 @@ main = do
     print printableDate
     let printableLastMonth = getPrevMonth printableDate 
     print printableLastMonth
-    -- print =<< "This month = "
-    -- contents <- readFile "transactions.csv"
-    -- let contentLines = lines contents
-    -- let printabledate = fmap getDateStr date
-
-
+    contents <- readFile "transactions.csv"
+    let contentLines = lines contents
+    print $ getLinesWithMonth printableLastMonth contentLines
