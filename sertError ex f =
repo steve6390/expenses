@@ -1,0 +1,38 @@
+[1mdiff --git a/src/DateFuncs.hs b/src/DateFuncs.hs[m
+[1mindex 66cd5be..29198e4 100644[m
+[1m--- a/src/DateFuncs.hs[m
+[1m+++ b/src/DateFuncs.hs[m
+[36m@@ -17,5 +17,7 @@[m [mmonthStr 11 = "Nov"[m
+ monthStr 12 = "Dec"[m
+ [m
+ getPrevMonth :: (Integer,Int,Int) -> (Integer,Int)[m
+[31m-getPrevMonth (year,1,day) = (year -1, 12)[m
+[31m-getPrevMonth (year,month,day) = (year,month-1)[m
+[32m+[m[32mgetPrevMonth (year,1,day) = (year-1, 12)[m
+[32m+[m[32mgetPrevMonth (year,month,day)[m[41m [m
+[32m+[m[32m    | month < 1 = error "Error: Month must be in range 1-12"[m
+[32m+[m[32m    | month < 13 = (year,month-1)[m
+[1mdiff --git a/test/Spec.hs b/test/Spec.hs[m
+[1mindex 8210d16..55443a4 100644[m
+[1m--- a/test/Spec.hs[m
+[1m+++ b/test/Spec.hs[m
+[36m@@ -2,13 +2,13 @@[m [mimport Test.Tasty[m
+ import Test.Tasty.HUnit[m
+ import DateFuncs[m
+ [m
+[31m-main :: IO ()[m
+[31m-main = defaultMain unitTests[m
+[32m+[m[32mgpm1 = testCase "getPrevMonth test 1" $ assertEqual [] (2017,4) (getPrevMonth (2017,5,31))[m
+[32m+[m[32mgpm2 = testCase "getPrevMonth test 2" $ assertEqual [] (2017,11) (getPrevMonth (2017,12,1))[m
+[32m+[m[32mgpm3 = testCase "getPrevMonth test 3" $ assertEqual [] (2016,12) (getPrevMonth (2017,1,14))[m
+ [m
+ unitTests = [m
+     testGroup "Unit Tests"[m
+[31m-    [ gpm1, gpm2, gpm3  ][m
+[32m+[m[32m    [ gpm1, gpm2, gpm3 ][m
+ [m
+[31m-gpm1 = testCase "getPrevMonth test 1" $ assertEqual [] (2017,4) (getPrevMonth (2017,5,31))[m
+[31m-gpm2 = testCase "getPrevMonth test 2" $ assertEqual [] (2017,10) (getPrevMonth (2017,11,1))[m
+[31m-gpm3 = testCase "getPrevMonth test 3" $ assertEqual [] (2016,12) (getPrevMonth (2017,1,14))[m
+[32m+[m[32mmain :: IO ()[m
+[32m+[m[32mmain = defaultMain unitTests[m

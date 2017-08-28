@@ -17,5 +17,7 @@ monthStr 11 = "Nov"
 monthStr 12 = "Dec"
 
 getPrevMonth :: (Integer,Int,Int) -> (Integer,Int)
-getPrevMonth (year,1,day) = (year -1, 12)
-getPrevMonth (year,month,day) = (year,month-1)
+getPrevMonth (year,1,day) = (year-1, 12)
+getPrevMonth (year,month,day) 
+    | month < 1 = error "Error: Month must be in range 1-12"
+    | month < 13 = (year,month-1)
