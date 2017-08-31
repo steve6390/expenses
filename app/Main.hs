@@ -8,10 +8,13 @@ import DateFuncs
 main :: IO ()
 main = do
     putStrLn "Transaction helper, 0.1"
-    printableDate <- (toGregorian . utctDay) <$> getCurrentTime
-    print printableDate
-    let printableLastMonth = getPrevMonth printableDate 
-    print printableLastMonth
-    contents <- readFile "transactions.csv"
-    let contentLines = lines contents
-    print $ getLinesWithMonth printableLastMonth contentLines
+    today <- (toGregorian . utctDay) <$> getCurrentTime
+    print today
+    let lastMonth = getPrevMonth today 
+    print lastMonth
+    transactions <- lines <$> readFile "transactions.csv"
+    putStrLn $ "Total transactions: " ++ show (length transactions)
+    let linesWithMonth = getLinesWithMonth lastMonth transactions
+    putStrLn $ "transactions last month: " ++ show (length linesWithMonth)
+    print $ getLinesWithMonth lastMonth transactions
+
