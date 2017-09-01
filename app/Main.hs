@@ -16,5 +16,5 @@ main = do
     putStrLn $ "Total transactions: " ++ show (length transactions)
     let linesWithMonth = getLinesWithMonth lastMonth transactions
     putStrLn $ "transactions last month: " ++ show (length linesWithMonth)
-    print $ getLinesWithMonth lastMonth transactions
+    putStrLn $ unlines linesWithMonth
 
