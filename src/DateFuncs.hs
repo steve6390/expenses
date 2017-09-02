@@ -7,9 +7,9 @@ module DateFuncs
 import Text.Regex.PCRE
     
 getPrevMonth :: (Integer,Int,Int) -> (Integer,Int)
-getPrevMonth (year,1,day) = (year-1, 12)
 getPrevMonth (year,month,day) 
     | month < 1 = error "Invalid month"
+    | month == 1 = (year-1,12)
     | month < 13 = (year,month-1)
     | otherwise = error "Invalid month"
     
