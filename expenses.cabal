@@ -27,6 +27,7 @@ executable expenses-exe
   build-depends:       base
                      , expenses
                      , time
+                     , regex-pcre-builtin
   default-language:    Haskell2010
 
 test-suite expenses-test
